@@ -8,8 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import is.example.mschroeder.test.R;
-
 public class AlarmService extends IntentService {
     private NotificationManager alarmNotificationManager;
 

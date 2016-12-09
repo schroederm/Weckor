@@ -14,8 +14,6 @@ import android.widget.ToggleButton;
 
 import java.util.Calendar;
 
-import is.example.mschroeder.test.R;
-
 public class AlarmActivity extends AppCompatActivity implements TimePicker.OnTimeChangedListener {
 
     AlarmManager alarmManager;
