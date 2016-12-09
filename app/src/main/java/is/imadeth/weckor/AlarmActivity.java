@@ -52,8 +52,8 @@ public class AlarmActivity extends AppCompatActivity implements TimePicker.OnTim
 
         SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
 
-        int hour = prefs.getInt("hour", timePicker.getCurrentHour());
-        int minute = prefs.getInt("minute", timePicker.getCurrentMinute());
+        int hour = prefs.getInt("hour", 1);
+        int minute = prefs.getInt("minute", 1);
         boolean active = prefs.getBoolean("active", toggleButton.isChecked());
 
         alarmConfiguration = new AlarmConfiguration(hour, minute, active);
@@ -67,10 +67,11 @@ public class AlarmActivity extends AppCompatActivity implements TimePicker.OnTim
     protected void onPause() {
         super.onPause();
 
-        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
-        prefs.edit().putBoolean("active", alarmConfiguration.shouldSound());
-        prefs.edit().putInt("hour", alarmConfiguration.getHour());
-        prefs.edit().putInt("minute", alarmConfiguration.getMinute());
+        SharedPreferences.Editor prefs = getPreferences(Context.MODE_PRIVATE).edit();
+        prefs.putBoolean("active", alarmConfiguration.shouldSound());
+        prefs.putInt("hour", alarmConfiguration.getHour());
+        prefs.putInt("minute", alarmConfiguration.getMinute());
+        prefs.commit();
     }
 
     private void updateStateFromUI() {
@@ -103,6 +104,7 @@ public class AlarmActivity extends AppCompatActivity implements TimePicker.OnTim
 
     @Override
     public void onTimeChanged(TimePicker timePicker, int hour, int minute) {
+        updateStateFromUI();
         updateIntent();
     }
 }

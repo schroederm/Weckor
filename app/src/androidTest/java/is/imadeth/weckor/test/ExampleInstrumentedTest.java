@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.mschroeder.test", appContext.getPackageName());
+        assertEquals("is.imadeth.weckor", appContext.getPackageName());
     }
 }
