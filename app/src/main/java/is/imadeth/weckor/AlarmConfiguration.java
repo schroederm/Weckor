@@ -1,9 +1,5 @@
 package is.imadeth.weckor;
 
-/**
- * Created by mschroeder on 09/12/2016.
- */
-
 public class AlarmConfiguration {
 
     private int hour;

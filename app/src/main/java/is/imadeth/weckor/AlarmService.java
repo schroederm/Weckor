@@ -1,23 +1,43 @@
 package is.imadeth.weckor;
 
-import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
-public class AlarmService extends IntentService {
+public class AlarmService extends Service {
     private NotificationManager alarmNotificationManager;
 
-    public AlarmService() {
-        super("AlarmService");
+    private MediaPlayer mediaPlayer;
+    private boolean isRunning;
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 
     @Override
-    public void onHandleIntent(Intent intent) {
-        sendNotification("Wake Up! Wake Up!");
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        sendNotification("Good morning!");
+
+        boolean shouldStart = intent.getBooleanExtra("startAlarm", false);
+
+        if (shouldStart) {
+            mediaPlayer = MediaPlayer.create(this, R.raw.alarm);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+        } else {
+            if (mediaPlayer != null) mediaPlayer.stop();
+        }
+
+        return START_NOT_STICKY;
     }
 
     private void sendNotification(String msg) {

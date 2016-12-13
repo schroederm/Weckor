@@ -20,18 +20,12 @@ public class AlarmActivity extends AppCompatActivity implements TimePicker.OnTim
     private TimePicker timePicker;
     private ToggleButton toggleButton;
     private PendingIntent pendingIntent;
-    private static AlarmActivity inst;
 
     private AlarmConfiguration alarmConfiguration;
-
-    public static AlarmActivity instance() {
-        return inst;
-    }
 
     @Override
     protected void onStart() {
         super.onStart();
-        inst = this;
     }
 
     @Override
@@ -85,7 +79,6 @@ public class AlarmActivity extends AppCompatActivity implements TimePicker.OnTim
         if (toggleButton.isChecked()) {
             Log.d("MyActivity", "Alarm On");
         } else {
-            alarmManager.cancel(pendingIntent);
             Log.d("MyActivity", "Alarm Off");
         }
     }
@@ -98,8 +91,15 @@ public class AlarmActivity extends AppCompatActivity implements TimePicker.OnTim
         calendar.set(Calendar.MINUTE, alarmConfiguration.getMinute());
 
         myIntent.putExtra("startAlarm", alarmConfiguration.shouldSound());
-        pendingIntent = PendingIntent.getBroadcast(AlarmActivity.this, 0, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+
+        if (toggleButton.isChecked()) {
+            pendingIntent = PendingIntent.getBroadcast(AlarmActivity.this, 0, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        } else {
+            alarmManager.cancel(pendingIntent);
+
+            sendBroadcast(myIntent);
+        }
     }
 
     @Override
