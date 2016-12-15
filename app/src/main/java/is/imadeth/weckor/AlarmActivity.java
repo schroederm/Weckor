@@ -54,6 +54,7 @@ public class AlarmActivity extends AppCompatActivity implements TimePicker.OnTim
 
         timePicker.setCurrentHour(hour);
         timePicker.setCurrentMinute(minute);
+        timePicker.setIs24HourView(true);
         toggleButton.setChecked(active);
     }
 
@@ -89,6 +90,8 @@ public class AlarmActivity extends AppCompatActivity implements TimePicker.OnTim
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, alarmConfiguration.getHour());
         calendar.set(Calendar.MINUTE, alarmConfiguration.getMinute());
+
+        Log.d("alarm", alarmConfiguration.toString());
 
         myIntent.putExtra("startAlarm", alarmConfiguration.shouldSound());
 

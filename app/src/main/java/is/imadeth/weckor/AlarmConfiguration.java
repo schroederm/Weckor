@@ -23,4 +23,9 @@ public class AlarmConfiguration {
         this.minute = minute;
         this.shouldSound = shouldSound;
     }
+
+    @Override
+    public String toString() {
+        return Integer.toString(hour) + Integer.toString(minute);
+    }
 }

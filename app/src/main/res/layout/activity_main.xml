@@ -15,7 +15,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/timePicker"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:timePickerMode="spinner"
+        android:layout_alignParentEnd="true" />
 
     <ToggleButton
         android:text="ToggleButton"

@@ -29,12 +29,12 @@ public class AlarmService extends Service {
 
         boolean shouldStart = intent.getBooleanExtra("startAlarm", false);
 
+        if (mediaPlayer != null) mediaPlayer.stop();
+
         if (shouldStart) {
             mediaPlayer = MediaPlayer.create(this, R.raw.alarm);
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
-        } else {
-            if (mediaPlayer != null) mediaPlayer.stop();
         }
 
         return START_NOT_STICKY;
