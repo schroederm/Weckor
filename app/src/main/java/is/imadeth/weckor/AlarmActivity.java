@@ -91,6 +91,13 @@ public class AlarmActivity extends AppCompatActivity implements TimePicker.OnTim
         calendar.set(Calendar.HOUR_OF_DAY, alarmConfiguration.getHour());
         calendar.set(Calendar.MINUTE, alarmConfiguration.getMinute());
 
+        Calendar now = Calendar.getInstance();
+
+        // Check if the alarm date is in the past
+        if (calendar.getTimeInMillis() <= now.getTimeInMillis()) {
+            calendar.add(Calendar.DATE, 1);
+        }
+
         Log.d("alarm", alarmConfiguration.toString());
 
         myIntent.putExtra("startAlarm", alarmConfiguration.shouldSound());
