@@ -88,8 +88,17 @@ public class AlarmActivity extends AppCompatActivity implements TimePicker.OnTim
     }
 
     public void onSnooze(View view) {
-        if (toggleButton.isChecked()) {
+        Intent myIntent = new Intent(this.getApplicationContext(), AlarmReceiver.class);
+        myIntent.putExtra("startAlarm", false);
+        sendBroadcast(myIntent);
 
+        if (toggleButton.isChecked()) {
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.MINUTE, 5);
+
+            alarmConfiguration = new AlarmConfiguration(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true);
+
+            updateIntent();
         }
     }
 

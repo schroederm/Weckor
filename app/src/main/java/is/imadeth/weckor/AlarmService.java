@@ -15,7 +15,6 @@ public class AlarmService extends Service {
     private NotificationManager alarmNotificationManager;
 
     private MediaPlayer mediaPlayer;
-    private boolean isRunning;
 
     @Nullable
     @Override
