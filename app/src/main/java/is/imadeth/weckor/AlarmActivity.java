@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TimePicker;
 import android.widget.ToggleButton;
 
@@ -20,6 +21,7 @@ public class AlarmActivity extends AppCompatActivity implements TimePicker.OnTim
     private TimePicker timePicker;
     private ToggleButton toggleButton;
     private PendingIntent pendingIntent;
+    private Button snoozeButton;
 
     private AlarmConfiguration alarmConfiguration;
 
@@ -36,6 +38,7 @@ public class AlarmActivity extends AppCompatActivity implements TimePicker.OnTim
         timePicker = (TimePicker) findViewById(R.id.timePicker);
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        snoozeButton = (Button) findViewById(R.id.snooze);
 
         timePicker.setOnTimeChangedListener(this);
     }
@@ -81,6 +84,12 @@ public class AlarmActivity extends AppCompatActivity implements TimePicker.OnTim
             Log.d("MyActivity", "Alarm On");
         } else {
             Log.d("MyActivity", "Alarm Off");
+        }
+    }
+
+    public void onSnooze(View view) {
+        if (toggleButton.isChecked()) {
+
         }
     }
 

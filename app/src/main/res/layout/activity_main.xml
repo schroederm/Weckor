@@ -8,24 +8,47 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="is.imadeth.weckor.AlarmActivity">
+    tools:context="is.imadeth.weckor.AlarmActivity"
+    android:background="@color/colorBackground">
 
-    <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timePicker"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:timePickerMode="spinner"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true">
 
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/timePicker"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-        android:id="@+id/toggleButton"
-        android:onClick="onToggleClicked" />
+        <TimePicker
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/timePicker"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:timePickerMode="spinner"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="0.21" />
+
+        <ToggleButton
+            android:text="ToggleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toggleButton"
+            android:onClick="onToggleClicked"
+            android:layout_marginBottom="16dp"
+            android:layout_above="@+id/snooze"
+            android:layout_alignParentStart="true"
+            android:layout_weight="0.39" />
+
+        <Button
+            android:text="Snooze"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/snooze"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="0.39"
+            android:onClick="onSnooze" />
+    </LinearLayout>
 </RelativeLayout>

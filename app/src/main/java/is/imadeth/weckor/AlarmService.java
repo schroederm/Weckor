@@ -53,7 +53,7 @@ public class AlarmService extends Service {
                 .setAutoCancel(true)
                 .setContentText(msg)
                 .setContentIntent(contentIntent)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.icon)
                 .build();
 
         alarmNotificationManager.notify(0, notification);
