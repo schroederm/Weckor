@@ -25,8 +25,6 @@ public class AlarmService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        sendNotification("Good morning!");
-
         boolean shouldStart = intent.getBooleanExtra("startAlarm", false);
 
         if (mediaPlayer != null) mediaPlayer.stop();
@@ -35,6 +33,8 @@ public class AlarmService extends Service {
             mediaPlayer = MediaPlayer.create(this, R.raw.alarm);
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
+
+            sendNotification("Good morning!");
         }
 
         return START_NOT_STICKY;
